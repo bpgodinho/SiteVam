@@ -31,8 +31,8 @@
 
 .about-div{position:relative; display:flex; justify-content: center; background-color:#292929;align-items: center;padding-left: 5%;padding-right: 1%; padding-top: 243px;padding-bottom: 750px; z-index: -1;}
 .about-logo{width: 35%; padding-right: 5%;}
-.about-description{position:relative;border-radius: 65px;background-color: #1a1a1a; font-size: 2.3vmin; color: white;
-    font-family: "Outfit", sans-serif; width: 40%; margin-left: 5%; padding: 5%; box-shadow: 0px 0px 20px 20px #2582135c; -webkit-text-stroke: 0.03vmin #23d400;}
+.about-description{position:relative;border-radius: 65px;background-color: #1a1a1a; font-size: 2.4vmin; color: white;
+    font-family: "Outfit", sans-serif; width: 40%; margin-left: 5%; padding: 5%; padding-top:4%; box-shadow: 0px 0px 20px 20px #2582135c; -webkit-text-stroke: 0.03vmin #23d400;}
 .sign-up-button{position:absolute;left: 50%;bottom: 0%; transform: translate(-50%,75%);background-color: #040404; padding: 6%;
     width:50%;-webkit-text-stroke: 0vmin #23d400; font-size: 5.5vmin; text-align: center; border-radius: 45px;
     border: 0.1vmin solid #23d400; box-shadow: 0px 10px 20px 20px #2582135c; cursor: pointer; text-decoration: none;color: white;}
