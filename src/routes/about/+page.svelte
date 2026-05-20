@@ -49,7 +49,8 @@
 
     let index = $state(0)
     let curSelected = $state(-1);
-    let scrolling = false;
+    let curScroll = 2;
+    let scrolling = true;
 
 	let container = $state(null);
 
@@ -61,9 +62,9 @@
     ...portraits
     ]);
 
-    function scrollNext(direction = true) {
+    function scrollNext(direction = true, multiply = 1) {
         container?.scrollBy({
-        left: direction ? ITEM_WIDTH : -ITEM_WIDTH,
+        left: direction ? ITEM_WIDTH * multiply : -ITEM_WIDTH * multiply,
         behavior: "smooth"
         });
     }
@@ -91,9 +92,9 @@
         }
     }
 
-    function tryScroll(direction){
+    function tryScroll(direction = true, multiply = 1) {
         if (!scrolling) return;
-        scrollNext();
+        scrollNext(direction, multiply);
     }
 
     $effect(() => {
@@ -104,7 +105,7 @@
     });
 
     $effect(() => {
-        const interval = setInterval(() => scrollNext(true), 3000);
+        const interval = setInterval(() => tryScroll(true, 1), 3000);
         return () => clearInterval(interval);
     });
 
