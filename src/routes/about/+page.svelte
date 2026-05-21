@@ -36,6 +36,22 @@
         "/Faculty/vanessa_rodrigues 2.png",
     ];
 
+    const facultyNames = [
+        "André Carita",
+        "Andreia Pinto-de-Sousa",
+        "Eduardo Magalhães",
+        "Felipe Coelho",
+        "Henrique Basto",
+        "Hugo Barbosa",
+        "João Alves de Sousa",
+        "José Raimundo",
+        "Ricardo Mota",
+        "Rodrigo Carvalho",
+        "Vanessa Rodrigues"
+    ];
+
+    import {slide} from 'svelte/transition';
+
     import reference from '$lib/assets/Group 10.png'
     import pitch from '$lib/assets/Spaces/pitch0.png'
     import jam from '$lib/assets/Spaces/JAM_5.png'
@@ -49,12 +65,12 @@
 
     let index = $state(0)
     let curSelected = $state(-1);
-    let curScroll = 2;
+    let curScroll = 13;
     let scrolling = true;
 
 	let container = $state(null);
 
-    const ITEM_WIDTH = 300;
+    const ITEM_WIDTH = 308;
 
     const looped = $derived([
     ...portraits,
@@ -63,6 +79,7 @@
     ]);
 
     function scrollNext(direction = true, multiply = 1) {
+        curScroll = direction ? curScroll + multiply : curScroll - multiply;
         container?.scrollBy({
         left: direction ? ITEM_WIDTH * multiply : -ITEM_WIDTH * multiply,
         behavior: "smooth"
@@ -84,11 +101,11 @@
         const sectionWidth = container.scrollWidth / 3;
 
         if (container.scrollLeft >= sectionWidth * 2) {
-        jumpScroll(container.scrollLeft - sectionWidth);
+        jumpScroll(ITEM_WIDTH * (curScroll +1));
         }
 
         if (container.scrollLeft <= 0) {
-        jumpScroll(container.scrollLeft + sectionWidth);
+        jumpScroll(ITEM_WIDTH * (curScroll +1));
         }
     }
 
@@ -122,8 +139,33 @@
         });
     });
 
-    function click() {
-        console.log("Clicked");
+    async function scrollClicked(idx) {
+        scrolling = false;
+        curSelected = idx;
+        let totalScroll = idx - curScroll;
+        if (idx < 3){
+            console.log("there");
+            container.style.scrollBehavior = "auto";
+            container.scrollLeft = (container.scrollWidth / 3) - (ITEM_WIDTH * (totalScroll));
+            curScroll = 14 + (totalScroll);
+            curSelected = 14 + (totalScroll);
+            await new Promise(resolve => setTimeout(resolve, 5));
+            container.style.scrollBehavior = "smooth";
+            container.scrollLeft = ITEM_WIDTH * (curScroll - 2);
+            return;
+        }
+        if (idx >= 24){
+            console.log("here");
+            container.style.scrollBehavior = "auto";
+            container.scrollLeft = (container.scrollWidth / 3) - (ITEM_WIDTH * (totalScroll));
+            curScroll = 12 + (totalScroll);
+            curSelected = 12 + (totalScroll);
+            await new Promise(resolve => setTimeout(resolve, 5));
+            container.style.scrollBehavior = "smooth";
+            container.scrollLeft = ITEM_WIDTH * (curScroll-2);
+            return;
+        }
+        scrollNext(totalScroll > 0, Math.abs(totalScroll));
     }
 </script>
 
@@ -159,11 +201,18 @@
 
 .faculty{display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; color: white;
     font-family: "Outfit", sans-serif; font-size: 10.5vmin; text-shadow: 0px 0px 12px #23d400; margin-bottom: 5%;}
-.wrapper {display: flex; align-items: center; gap: 12px; width: 100%;margin-top: 5%;}
-.portrait-strip {display: flex;gap: 8px;overflow-x: auto;scroll-behavior: smooth;scrollbar-width: none;width: 100%;padding: 4px;overflow-y: visible;}
+.faculty-description{font-size: 2.7vmin; color: white;
+    font-family: "Outfit", sans-serif; width: 75%; padding: 3%; box-shadow: 0px 0px 20px 20px #2582135c; -webkit-text-stroke: 0.04vmin #23d400; line-height: 1.5;
+    margin-top: 4%; border: 0.1vmin solid #23d400; text-shadow: 0px 0px 0px rgba(255, 255, 255, 0); text-align: center; border-radius: 20px;}
+.wrapper {position: relative; display: block; align-items: center; gap: 12px; width: 100%;margin-top: 5%;}
+.portrait-strip {display: flex;gap: 8px;overflow-x: auto;scroll-behavior: smooth;scrollbar-width: none;overflow-y: visible;width: 100%;padding: 40px;}
 .portrait-strip::-webkit-scrollbar {display: none;}
 .portrait {width: 300px;height: 370px;border-radius: 27px;user-select: none;}
 .portrait:hover {transform: scale(1.05); transition: transform 0.3s ease-in-out;}
+.professor-profile{display: flex; align-items: center; width: 70%; height: 100%;
+    background-color: #1a1a1a; border-radius: 20px; box-shadow: 0px 0px 20px 20px #2582135c; border: 0.1vmin solid #23d400;left: 50%; top: 50%; transform: translate(25%, -105%); z-index: 10;}
+.professor-name{font-size: 3vmin; color: white; text-shadow: 0px 0px 0px rgba(255, 255, 255, 0); -webkit-text-stroke: 0.04vmin #23d400;}
+.profile-portrait{width: 30%; height: 90%; border-radius: 20px; margin-left: 2.5%; margin-right: 5%; max-height:none;}
 
 .footer-div{background-color:#2d7328; height: 70px; display: flex; bottom: 0px;}
 .contact-logo{max-height: 100%; height:auto; padding: 0.75%; padding-left: 3%;}
@@ -269,13 +318,25 @@
 
 <div class="faculty">
     Docentes
+    <div class="faculty-description">
+        A nossa equipa de docentes é composta por profissionais experientes e apaixonados, dedicados a fornecer uma educação de alta qualidade e a apoiar o desenvolvimento dos nossos estudantes. Com uma vasta experiência na indústria de videojogos e multimédia, os nossos professores trazem uma perspectiva prática e atualizada para as suas aulas, preparando os alunos para os desafios do mercado de trabalho.
+    </div>
     <div class="wrapper">
         <div bind:this={container} class="portrait-strip" onscroll={handleScroll}>
         {#each looped as src, i}
-        <img src={src} alt={`Portrait ${i}`} class="portrait" draggable="false" style="filter: grayscale({curSelected === i ? 0 : 100}%);" onclick={() => console.log(i)}/>
+        <img src={src} alt={`Portrait ${i}`} class="portrait" draggable="false" style="filter: grayscale({curSelected === i ? 0 : 100}%);" onclick={() => scrollClicked(i)}/>
         {/each}
         </div>
+        {#if curSelected >= 0}
+        <div class="professor-profile" transition:slide>
+            <img src={portraits[curSelected % portraits.length]} alt={`Portrait ${curSelected}`} class="profile-portrait">
+            <div class="professor-name">
+                {facultyNames[curSelected % portraits.length]}
+            </div>
+        </div>
+        {/if}
     </div>
+    
 </div>
 <div class="footer-div">
     <img src={logo_white} class="contact-logo">
