@@ -32,7 +32,7 @@
 </script>
 
 <style>
-:global(body) {margin: 0px; padding: 0px; overflow-x: hidden;background-color: #292929;}
+:global(body) {margin: 0px; padding: 0px; overflow-x: hidden;background-color: #232323;}
 
 .reference{position: absolute; width: 100%;z-index: -99;}
 .popup-ref{position: fixed; width: 90%;z-index: 99; opacity: 0.5;top: 10%; left: 5%;}
@@ -80,7 +80,7 @@
             JOGOS
         </div>
         <div class= "vertical"></div>
-        <a class="top-nav-item" href="/articles">
+        <a class="top-nav-item" href="/hall-of-fame">
             ARTIGOS
         </a>
     </ul>

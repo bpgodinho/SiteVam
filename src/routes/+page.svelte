@@ -13,10 +13,10 @@
 </script>
 
 <style>
-:global(body) {margin: 0px; padding: 0px; overflow-x: hidden;}
+:global(body) {margin: 0px; padding: 0px; overflow-x: hidden;background-color: #292929;}
 
 .reference{position: absolute; width: 100%;z-index: -99;}
-.top-nav{position: fixed; display:flex; height: 65px; width:100%; background-color:#272827;z-index: 2;}
+.top-nav{position: fixed; display:flex; height: 65px; width:100%; background-color:#232323;z-index: 999;}
 .vam-logo{max-height: 100%; height:auto; padding: 0.75%; padding-left: 3%;}
 .nav-list{position: absolute; display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; margin: 0%; padding: 0%;}
 .top-nav-item{font-family: "Outfit", sans-serif;font-size: x-large; font-weight: 200; color: white;padding-left: 0%;text-decoration:none;}
@@ -29,13 +29,14 @@
 .shapes1-vid{position: absolute; width: 30%;left: 0%;bottom: 0%;}
 .shapes2-vid{position: absolute; width: 30%;right: 0%;top: 7%;}
 
-.about-div{position:relative; display:flex; justify-content: center; background-color:#292929;align-items: center;padding-left: 5%;padding-right: 1%; padding-top: 243px;padding-bottom: 750px; z-index: -1;}
+.about-div{position:relative; display:flex; justify-content: center; background-color:#292929;align-items: center;padding-left: 5%;
+    padding-right: 1%; padding-top: 243px;padding-bottom: 750px;}
 .about-logo{width: 35%; padding-right: 5%;}
 .about-description{position:relative;border-radius: 65px;background-color: #1a1a1a; font-size: 2.4vmin; color: white;
     font-family: "Outfit", sans-serif; width: 40%; margin-left: 5%; padding: 5%; padding-top:4%; box-shadow: 0px 0px 20px 20px #2582135c; -webkit-text-stroke: 0.03vmin #23d400;}
 .sign-up-button{position:absolute;left: 50%;bottom: 0%; transform: translate(-50%,75%);background-color: #040404; padding: 6%;
     width:50%;-webkit-text-stroke: 0vmin #23d400; font-size: 5.5vmin; text-align: center; border-radius: 45px;
-    border: 0.1vmin solid #23d400; box-shadow: 0px 10px 20px 20px #2582135c; cursor: pointer; text-decoration: none;color: white;}
+    border: 0.1vmin solid #23d400; box-shadow: 0px 10px 20px 20px #2582135c; cursor: pointer; text-decoration: none;color: white;z-index: 2;}
 .shapes1-about{position: absolute; width: 52%;left: -5%;top: 10%;z-index: -1;}
 .shapes2-about{position: absolute; width: 45%;right: -12%;bottom: 0%;}
 
@@ -56,13 +57,13 @@
             SOBRE
         </a>
         <div class= "vertical"></div>
-        <div class="top-nav-item">
-            JOGOS
-        </div>
+        <a class="top-nav-item" href="/curriculum">
+            PLANO
+        </a>
         <div class= "vertical"></div>
-        <div class="top-nav-item">
-            ARTIGOS
-        </div>
+        <a class="top-nav-item" href="/hall-of-fame">
+            HALL OF FAME
+        </a>
     </ul>
 </nav>
 <div class="video-container">
@@ -78,7 +79,7 @@
         Vencemos o Prémio Fazer + “Melhor Prática Pedagógica Inovadora” em reconhecimento da nossa estratégia pedagógica que usa a metodologia de Project Based Learning (PBL).<br><br>
         Isso significa que aprenderás enquanto crias os teus projetos e desenvolves o teu portfólio, seguindo o teu próprio caminho num processo de trabalho aliciante e motivador.<br><br>
         Jogamos, analisamos e sonhamos com os mundos virtuais que juntos iremos criar.
-        <a class="sign-up-button" href="/">
+        <a class="sign-up-button" href="https://www.ulusofona.pt/porto/licenciaturas/videojogos-e-aplicacoes-multimedia">
             Candidata-te!
         </a>
     </div>

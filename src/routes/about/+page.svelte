@@ -4,7 +4,6 @@
 		'/AboutPhotos/JAM_2.png',
 		'/AboutPhotos/JAM_3.png',
         '/AboutPhotos/JAM_4.png',
-        '/AboutPhotos/JAM_5.png',
         '/AboutPhotos/JAM_6.png',
         '/AboutPhotos/mostra_1.png',
         '/AboutPhotos/mostra_2.png',
@@ -12,7 +11,6 @@
         '/AboutPhotos/mostra_4.png',
         '/AboutPhotos/mostra_5.png',
         '/AboutPhotos/mostra_6.png',
-        '/AboutPhotos/mostra_7.png',
         '/AboutPhotos/mostra_8.png',
         '/AboutPhotos/mostra_9.png',
         '/AboutPhotos/mostra_10.png',
@@ -50,7 +48,22 @@
         "Vanessa Rodrigues"
     ];
 
+    const professorBio = [
+        "Subdiretor do Curso - Especialista em História, Teoria e Game Design <br>Criações em destaque: <br> - Autor do livro A Fotografia nos Videojogos - Um ensaio Fotográfico ao The Last of Us Part II (2023) <br>- Coautor do livro A Visão Crítica do Estudante: Videojogos Independentes (2023) <br>- Autor do livro Pensar Videojogos: Design, Arte e Comunicação (2015) <br>- Coautor do livro A Visão Crítica do Estudante: Videojogos Independentes (2023) <br>- Autor do livro Pensar Videojogos: Design, Arte e Comunicação (2015)",
+        "",
+        "Docente e Investigador - Especialista em Sonoplastia e Tecnologias Multimédia <br>Criações em Destaque:<br>- Oktoberfest VR (Vencedor dos AUREA AWARDS 2026 na categoria de imersão)<br>- Oktoberfest VR  (Finalista dos XR Awards - AIXR 2026 na categoria de melhor jogo do ano)<br>- Beneath (Nomeação notável para Jogo do Ano nos Spotlight Awards 2025 e destaque nos Horror Game Awards 2025.",
+        "Especialista em programação e motores de jogo<br>Criações em Destaque:<br>- Flat Fat Fartfest  3D Platformer, PC, 2024<br>- Whatta Frogs Social Multiplayer, PC, 2026 <a href='https://store.steampowered.com/app/3762800/Whatta_Frogs/' style='text-decoration:none;color:white'>https://store.steampowered.com/app/3762800/Whatta_Frogs/</a><br>- Mirage Blocks Puzzle, Mobile, 2023",
+        "Especialista em programação e motores de jogo<br>Criações em Destaque:<br>",
+        "Especialista em tecnologias multimédia e Web<br>Criações em Destaque:<br>",
+        "Diretor do Curso - Doutorado em Arte Interativa, Especialista em Imagem Digital, Game Design e Animação. <br>Criações em destaque: <br>- Free that Fish (videojogo apresentado na Comic Con Portugal, Lisbon Games Week e The Very Big Indie Pitch - Pocket Gamer Connects London, 2015)<br>- Lots of Guts (Vencedor de Jogo mais Inovador Prémios Playstation Portugal 2015)<br>- Porquê (Animação Vencedora do Prémio de Jovem Cineasta Português - Cinanima 2006)",
+        "Doutorado em Medias Digitais - Especialista em ilustração e 3D.<br>Criações em destaque:<br>- Coordenador do projecto internacional Virtual Production Studio Networks <br>- The case of See, Hear, Touch no Evil e Bully Who?. Jogos de tabuleiro/digital (DIGICOM 2018 e 2019). <br>- Segundo lugar na 4º Competição Internacional de Ilustração, Treviso, Itália. (2016)",
+        "Especialista em Design, Produção, Gestão de Equipas e Marketing para jogos<br>Criações em destaque:<br>- Communications & Studio Manager na Krafton (PUBG Studios)<br>- Thunder Tier One, PUBG Plack Budget<br>- Cofundador do Festival de jogos Indie X, Editor Rubber Chicken Games",
+        "Doutorado em Medias Digitais - Especialista em Arte Digital e Motion Graphics<br>Criações em destaque:<br>- 30xN - Performance Audiovisual (SÓNAR, Istambul; GNRATION, Braga; SERRALVES, Porto; CONVENTO SÃO FRANCISCO, Coimbra; 2024-2026)<br>- Vanishing Quasars - Performance Audiovisual (ELECTROALTERNATIVE, Toulouse); FOTONICA, Roma; CRIATECH, Aveiro; 948MERKABA, Pamplona; MAPPING FESTIVAL, Genebra; VOLUMENS DAY, Valencia; SÓNAR, Lisboa; 2019-2023)<br>- Multiverse - Performance Audiovisual  (SÓNAR, Barcelona; BAM, Liège; STEREOLUX, Nantes; ADAF, Atenas; ECHO, Dubai; BRIGHTBRUSSELS, Bruxelas; 2016-2019)",
+        "Vanessa Rodrigues - Especialista em Produção Audiovisual <br>Criações em Destaque:<br>- Realizadora e Argumentista: O Feitiço de Areia (82', Portugal/Moçambique, 2025), filme documental: em distribuição  (2026)<br>- Realizadora, Produtora e Argumentista: Baptismo de Terra (90', Portugal/Brasil, 2015), filme documental (Menção Especial no Festival de Cinema de Avanca, 2017; Prémio Terres/Espanha de melhor banda sonora, 2018; Prémio Melhor Cinematografia - Hollywood Women's Film Festival, 2019)<br>- Realizadora e Argumentista: Palestina, Diários de um lugar incerto (37', Cisjordânia/Jordânia, 2013), áudio-documentário TSF (Menção Honrosa, Prémio UNESCO- Jornalismo, Integração & Direitos Humanos)",
+    ];
+
     import {slide} from 'svelte/transition';
+    import { innerWidth, innerHeight } from 'svelte/reactivity/window'
 
     import reference from '$lib/assets/Group 10.png'
     import pitch from '$lib/assets/Spaces/pitch0.png'
@@ -62,6 +75,7 @@
     import logo_white from '$lib/assets/Logos/logo_VAM_white.png'
     import phone from '$lib/assets/Icons/PhoneIcon.png'
     import email from '$lib/assets/Icons/EmailIcon.png'
+    import closeBtn from '$lib/assets/Icons/CloseIcon.png'
 
     let index = $state(0)
     let curSelected = $state(-1);
@@ -70,7 +84,9 @@
 
 	let container = $state(null);
 
-    const ITEM_WIDTH = 308;
+    function getWidth() {
+        return document.documentElement.clientWidth / 5;
+    }
 
     const looped = $derived([
     ...portraits,
@@ -81,7 +97,7 @@
     function scrollNext(direction = true, multiply = 1) {
         curScroll = direction ? curScroll + multiply : curScroll - multiply;
         container?.scrollBy({
-        left: direction ? ITEM_WIDTH * multiply : -ITEM_WIDTH * multiply,
+        left: direction ? (getWidth()) * multiply : -(getWidth()) * multiply,
         behavior: "smooth"
         });
     }
@@ -101,11 +117,11 @@
         const sectionWidth = container.scrollWidth / 3;
 
         if (container.scrollLeft >= sectionWidth * 2) {
-        jumpScroll(ITEM_WIDTH * (curScroll +1));
+        jumpScroll((innerWidth / 5) * (curScroll +1));
         }
 
         if (container.scrollLeft <= 0) {
-        jumpScroll(ITEM_WIDTH * (curScroll +1));
+        jumpScroll((innerWidth / 5) * (curScroll +1));
         }
     }
 
@@ -130,39 +146,41 @@
         if (!container) return;
 
         requestAnimationFrame(() => {
-        container.style.scrollBehavior = "auto";
-        container.scrollLeft = container.scrollWidth / 3;
+            curScroll = 13;
+            container.style.scrollBehavior = "auto";
+            container.scrollLeft = container.scrollWidth / 3;
 
-        requestAnimationFrame(() => {
-            container.style.scrollBehavior = "smooth";
-        });
+            requestAnimationFrame(() => {
+                container.style.scrollBehavior = "smooth";
+            });
         });
     });
 
     async function scrollClicked(idx) {
+        console.log();
         scrolling = false;
         curSelected = idx;
         let totalScroll = idx - curScroll;
         if (idx < 3){
             console.log("there");
             container.style.scrollBehavior = "auto";
-            container.scrollLeft = (container.scrollWidth / 3) - (ITEM_WIDTH * (totalScroll));
+            container.scrollLeft = (container.scrollWidth / 3) - ((getWidth()) * (totalScroll));
             curScroll = 14 + (totalScroll);
             curSelected = 14 + (totalScroll);
             await new Promise(resolve => setTimeout(resolve, 5));
             container.style.scrollBehavior = "smooth";
-            container.scrollLeft = ITEM_WIDTH * (curScroll - 2);
+            container.scrollLeft = (getWidth()) * (curScroll - 2);
             return;
         }
         if (idx >= 24){
             console.log("here");
             container.style.scrollBehavior = "auto";
-            container.scrollLeft = (container.scrollWidth / 3) - (ITEM_WIDTH * (totalScroll));
+            container.scrollLeft = (container.scrollWidth / 3) - ((getWidth()) * (totalScroll));
             curScroll = 12 + (totalScroll);
             curSelected = 12 + (totalScroll);
             await new Promise(resolve => setTimeout(resolve, 5));
             container.style.scrollBehavior = "smooth";
-            container.scrollLeft = ITEM_WIDTH * (curScroll-2);
+            container.scrollLeft = (getWidth())  * (curScroll-2);
             return;
         }
         scrollNext(totalScroll > 0, Math.abs(totalScroll));
@@ -173,7 +191,7 @@
 :global(body) {margin: 0px; padding: 0px; overflow-x: hidden;background-color: #292929;}
 
 .reference{position: absolute; width: 100%;z-index: -99;}
-.top-nav{position: fixed; display:flex; height: 65px; width:100%; background-color:#4d4c4c;z-index: 1;}
+.top-nav{position: fixed; display:flex; height: 65px; width:100%; background-color:#232323;z-index: 999;}
 .vam-logo{max-height: 100%; height:auto; padding: 0.75%; padding-left: 3%;}
 .nav-list{position: absolute; display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; margin: 0%; padding: 0%;}
 .top-nav-item{font-family: "Outfit", sans-serif;font-size: x-large; font-weight: 200; color: white;padding-left: 0%;text-decoration:none;}
@@ -197,22 +215,32 @@
 .space-title{font-size: 5vmin; font-weight: bold;}
 .space-description{font-size: 2.7vmin; text-shadow: 0px 0px 0px rgba(255, 255, 255, 0); -webkit-text-stroke: 0.04vmin #23d400;line-height: 1.5;text-justify: center;
     height: 90%; display: flex; align-items: center;}
-.space-show-img{border-radius: 20px;}
+.space-show-img{border-radius: 20px;width: 45%; height: 90%; object-fit: cover;align-self: center;}
 
 .faculty{display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; color: white;
-    font-family: "Outfit", sans-serif; font-size: 10.5vmin; text-shadow: 0px 0px 12px #23d400; margin-bottom: 5%;}
+    font-family: "Outfit", sans-serif; font-size: 10.5vmin; text-shadow: 0px 0px 12px #23d400; margin-bottom: 10%;}
 .faculty-description{font-size: 2.7vmin; color: white;
     font-family: "Outfit", sans-serif; width: 75%; padding: 3%; box-shadow: 0px 0px 20px 20px #2582135c; -webkit-text-stroke: 0.04vmin #23d400; line-height: 1.5;
     margin-top: 4%; border: 0.1vmin solid #23d400; text-shadow: 0px 0px 0px rgba(255, 255, 255, 0); text-align: center; border-radius: 20px;}
 .wrapper {position: relative; display: block; align-items: center; gap: 12px; width: 100%;margin-top: 5%;}
 .portrait-strip {display: flex;gap: 8px;overflow-x: auto;scroll-behavior: smooth;scrollbar-width: none;overflow-y: visible;width: 100%;padding: 40px;}
 .portrait-strip::-webkit-scrollbar {display: none;}
-.portrait {width: 300px;height: 370px;border-radius: 27px;user-select: none;}
+.portrait {width: 20%;height: 370px;border-radius: 27px;user-select: none;}
 .portrait:hover {transform: scale(1.05); transition: transform 0.3s ease-in-out;}
-.professor-profile{display: flex; align-items: center; width: 70%; height: 100%;
-    background-color: #1a1a1a; border-radius: 20px; box-shadow: 0px 0px 20px 20px #2582135c; border: 0.1vmin solid #23d400;left: 50%; top: 50%; transform: translate(25%, -105%); z-index: 10;}
-.professor-name{font-size: 3vmin; color: white; text-shadow: 0px 0px 0px rgba(255, 255, 255, 0); -webkit-text-stroke: 0.04vmin #23d400;}
-.profile-portrait{width: 30%; height: 90%; border-radius: 20px; margin-left: 2.5%; margin-right: 5%; max-height:none;}
+
+.professor-profile{position:absolute; display: flex; align-items: center; width: 70%; height: 100%;
+    background-color: #1a1a1a; border-radius: 20px; box-shadow: 0px 0px 20px 20px #2582135c; border: 0.1vmin solid #23d400;
+    left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 0;}
+.professor-name{font-size: 5vmin; color: white; text-shadow: 0px 0px 0px rgba(255, 255, 255, 0); text-shadow: 0px 0px 12px #23d400; font-weight: bold;}
+.profile-portrait{width: 30%; height: 90%; border-radius: 20px; margin-left: 2.5%; margin-right: 5%; max-height:none;object-fit:cover;}
+.professor-bio-container{display: flex; flex-direction: column; gap: 2%; height: 100%; width: 65%; padding-right: 5%; margin-top: 10%;margin-bottom: 5%;}
+.professor-description{font-size: 2.5vmin; color: white; text-shadow: 0px 0px 0px rgba(255, 255, 255, 0); -webkit-text-stroke: 0.04vmin #23d400;line-height: 1.5;text-justify: center;
+    height: 90%;margin-top: 10%;overflow-y: auto;margin-bottom: 10%;scrollbar-color: #23d400, #1a1a1a;}
+
+.professor-description::-webkit-scrollbar {width: 5px; height: auto;}
+.professor-description::-webkit-scrollbar-thumb {background-color: #23d400; border-radius: 10px;}
+.professor-description::-webkit-scrollbar-track {background-color: #1a1a1a; border-radius: 10px;}
+.close-btn{position: absolute; width: 2%; top: 5%; right: 2%; cursor: pointer;}
 
 .footer-div{background-color:#2d7328; height: 70px; display: flex; bottom: 0px;}
 .contact-logo{max-height: 100%; height:auto; padding: 0.75%; padding-left: 3%;}
@@ -234,12 +262,12 @@
             SOBRE
         </div>
         <div class= "vertical"></div>
-        <a class="top-nav-item" href="/games">
-            JOGOS
+        <a class="top-nav-item" href="/curriculum">
+            PLANO
         </a>
         <div class= "vertical"></div>
-        <a class="top-nav-item" href="/articles">
-            ARTIGOS
+        <a class="top-nav-item" href="/hall-of-fame">
+            HALL OF FAME
         </a>
     </ul>
 </nav>
@@ -330,9 +358,15 @@
         {#if curSelected >= 0}
         <div class="professor-profile" transition:slide>
             <img src={portraits[curSelected % portraits.length]} alt={`Portrait ${curSelected}`} class="profile-portrait">
-            <div class="professor-name">
-                {facultyNames[curSelected % portraits.length]}
+            <div class="professor-bio-container">
+                <div class="professor-name">
+                    {facultyNames[curSelected % portraits.length]}
+                </div>
+                <div class="professor-description">
+                    {@html professorBio[curSelected % portraits.length]}
+                </div>
             </div>
+            <img src={closeBtn} class="close-btn" onclick={() => (curSelected = -1,scrolling = true)}/>
         </div>
         {/if}
     </div>
