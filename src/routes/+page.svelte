@@ -8,8 +8,12 @@
     import shapes3 from '$lib/assets/Shapes/ShapeFlair3.png'
     import shapes4 from '$lib/assets/Shapes/ShapeFlair4.png'
     import logo from '$lib/assets/Logos/logo_VAM.png'
-    import phone from '$lib/assets/Icons/PhoneIcon.png'
+    import phone from '$lib/assets/Icons/PhoneIcon.webp'
     import email from '$lib/assets/Icons/EmailIcon.png'
+    import facebookIco from '$lib/assets/Icons/fbIcon.png'
+    import instagramIco from '$lib/assets/Icons/InstagramIcon.png'
+    import youtubeIco from '$lib/assets/Icons/ytIcon.png'
+    import logoULP from '$lib/assets/Logos/logo_ULP.png'
 </script>
 
 <style>
@@ -41,9 +45,12 @@
 .shapes2-about{position: absolute; width: 45%;right: -12%;bottom: 0%;}
 
 .footer-div{background-color:#2d7328; height: 70px; display: flex; bottom: 0px;}
-.contact-logo{max-height: 100%; height:auto; padding: 0.75%; padding-left: 3%;}
-.contact-div{align-content: center; font-family: "Outfit", sans-serif;font-size: 2vmin; margin-left: 2%;color: white;height: 70px;display: flex;align-items: center;width: 45%;}
+.contact-div{align-content: center; font-family: "Outfit", sans-serif;font-size: 1vw; margin-left: 0%;color: white;height: 70px;display: flex;align-items: center;width: 45%;}
 .phone-ico{max-height: 40%;margin-left: 5%; margin-right: 1%;}
+.socials{display: flex; justify-content: center; align-items: center;height: 100%;}
+.social-icon{display: flex; padding: 2%;}
+.social-image{width: 80%;}
+
 </style>
 
 <nav class="top-nav">
@@ -87,14 +94,23 @@
     <img src={shapes4} class="shapes2-about">
 </div>
 <div class="footer-div">
-    <img src={logo_white} class="contact-logo">
     <div class="contact-div">
-        <div>
-            Contactos:
-        </div>
         <img src={phone} class="phone-ico">
-        Tel: 999 999 999
+        Tel: 222 073 230
         <img src={email} class="phone-ico">
-        Mail: example@gmail.com
+        info.cup@ulusofona.pt <br>
+        joao.alves.de.sousa@ulusofona.pt
     </div>
+    <div class="socials">
+        <a href="https://www.facebook.com/VAMULP/" class="social-icon">
+            <img src={facebookIco} class="social-image">
+        </a>
+        <a href="https://www.facebook.com/VAMULP/" class="social-icon">
+            <img src={instagramIco} class="social-image">
+        </a>
+        <a href="https://www.facebook.com/VAMULP/" class="social-icon">
+            <img src={youtubeIco} class="social-image">
+        </a>
+    </div>
+    <img scr={logoULP} class="logo-ulp">
 </div>

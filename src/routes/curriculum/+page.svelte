@@ -3,8 +3,12 @@
 
 	import logo_no_txt from '$lib/assets/Logos/logo_VAM_no_txt.png'
     import logo_white from '$lib/assets/Logos/logo_VAM_white.png'
-    import phone from '$lib/assets/Icons/PhoneIcon.png'
+    import phone from '$lib/assets/Icons/PhoneIcon.webp'
     import email from '$lib/assets/Icons/EmailIcon.png'
+    import facebookIco from '$lib/assets/Icons/fbIcon.png'
+    import instagramIco from '$lib/assets/Icons/InstagramIcon.png'
+    import youtubeIco from '$lib/assets/Icons/ytIcon.png'
+    import logoULP from '$lib/assets/Logos/logo_ULP.png'
 
     let panels = $state([
         false,
@@ -22,9 +26,10 @@ function togglePanel(idx) {
 </script>
 
 <style>
+:global(body) {margin: 0px; padding: 0px; overflow-x: hidden;background-color: #292929;}
 
 .reference{position: absolute; width: 100%;z-index: -99;}
-.top-nav{position: fixed; display:flex; height: 65px; width:100%; background-color:#272827;z-index: 999;}
+.top-nav{position: fixed; display:flex; height: 65px; width:100%; background-color:#232323;z-index: 999;}
 .vam-logo{max-height: 100%; height:auto; padding: 0.75%; padding-left: 3%;}
 .nav-list{position: absolute; display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; margin: 0%; padding: 0%;}
 .top-nav-item{font-family: "Outfit", sans-serif;font-size: x-large; font-weight: 200; color: white;padding-left: 0%;text-decoration:none;}
@@ -47,9 +52,11 @@ padding-top: 1%;padding-bottom: 1%; text-shadow: 0px 0px 10px #23d400;}
     border: 0.1vmin solid #23d400; margin-top: -15%;z-index: -1;padding-top: 20%;}
 
 .footer-div{background-color:#2d7328; height: 70px; display: flex; bottom: 0px;}
-.contact-logo{max-height: 100%; height:auto; padding: 0.75%; padding-left: 3%;}
-.contact-div{align-content: center; font-family: "Outfit", sans-serif;font-size: 2vmin; margin-left: 2%;color: white;height: 70px;display: flex;align-items: center;width: 45%;}
+.contact-div{align-content: center; font-family: "Outfit", sans-serif;font-size: 1vw; margin-left: 0%;color: white;height: 70px;display: flex;align-items: center;width: 45%;}
 .phone-ico{max-height: 40%;margin-left: 5%; margin-right: 1%;}
+.socials{display: flex; justify-content: center; align-items: center;height: 100%;}
+.social-icon{display: flex; padding: 2%;}
+.social-image{width: 80%;}
 </style>
 
 <nav class="top-nav">
@@ -182,14 +189,23 @@ padding-top: 1%;padding-bottom: 1%; text-shadow: 0px 0px 10px #23d400;}
     </div>
 </div>
 <div class="footer-div">
-    <img src={logo_white} class="contact-logo">
     <div class="contact-div">
-        <div>
-            Contactos:
-        </div>
         <img src={phone} class="phone-ico">
-        Tel: 999 999 999
+        Tel: 222 073 230
         <img src={email} class="phone-ico">
-        Mail: example@gmail.com
+        info.cup@ulusofona.pt <br>
+        joao.alves.de.sousa@ulusofona.pt
     </div>
+    <div class="socials">
+        <a href="https://www.facebook.com/VAMULP/" class="social-icon">
+            <img src={facebookIco} class="social-image">
+        </a>
+        <a href="https://www.facebook.com/VAMULP/" class="social-icon">
+            <img src={instagramIco} class="social-image">
+        </a>
+        <a href="https://www.facebook.com/VAMULP/" class="social-icon">
+            <img src={youtubeIco} class="social-image">
+        </a>
+    </div>
+    <img scr={logoULP} class="logo-ulp">
 </div>
