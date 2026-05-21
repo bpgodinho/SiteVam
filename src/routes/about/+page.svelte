@@ -375,12 +375,10 @@
 <div class="footer-div">
     <img src={logo_white} class="contact-logo">
     <div class="contact-div">
-        <div>
-            Contactos:
-        </div>
         <img src={phone} class="phone-ico">
-        Tel: 999 999 999
+        Tel: 222 073 230
         <img src={email} class="phone-ico">
-        Mail: example@gmail.com
+        Mail: info.cup@ulusofona.pt
+        joao.alves.de.sousa@ulusofona.pt 
     </div>
 </div>
