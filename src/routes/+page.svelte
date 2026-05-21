@@ -92,7 +92,7 @@
         <img src={phone} class="phone-ico">
         Tel: 222 073 230
         <img src={email} class="phone-ico">
-        Mail: info.cup@ulusofona.pt
+        info.cup@ulusofona.pt
         joao.alves.de.sousa@ulusofona.pt 
     </div>
 </div>
